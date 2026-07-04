@@ -1,0 +1,11 @@
+React & Frontend Engineer (Web Development)
+Role Overview:
+Join our design-focused team to build the next-generation dashboard interfaces. You will translate wireframes into beautiful, responsive web pages.
+
+Required Skills:
+- Professional experience with JavaScript, TypeScript, and React
+- Advanced expertise in CSS3, HTML5, and Tailwind CSS
+- Experience bundling code with Vite or Webpack
+- Solid understanding of Git version control and GitHub workflows
+- Experience building CI/CD pipelines with GitHub Actions
+- Passion for animations, glassmorphism, and modern UI/UX design

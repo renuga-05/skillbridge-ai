@@ -1,0 +1,11 @@
+Senior Machine Learning Engineer (Data Science & AI)
+Role Overview:
+We are looking for a Senior Machine Learning Engineer to join our AI team. You will build and scale deep learning systems, design NLP systems, and write RESTful prediction APIs.
+
+Required Skills:
+- Strong proficiency in Python, SQL, and Git
+- Hands-on experience building neural networks with PyTorch
+- Experience building and deploying models in production using Docker containers
+- Experience designing backends with FastAPI
+- Cloud deployment experience using AWS (EC2, S3, ECS)
+- Strong understanding of data structures, algorithms, and system design
