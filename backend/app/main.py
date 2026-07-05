@@ -30,6 +30,11 @@ app = FastAPI(
 def startup_event():
     from app.database import init_db
     init_db()
+    # Eagerly load embedding model to prevent endpoint timeouts
+    print("Eagerly loading sentence-transformers embedding model...")
+    from app.rag import get_embedding_model
+    get_embedding_model()
+    print("Embedding model loaded successfully.")
 
 # Enable CORS for frontend communication
 # Allow config via environment variable, fallback to localhost
