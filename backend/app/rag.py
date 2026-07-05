@@ -1,7 +1,6 @@
 import os
 import pickle
 import numpy as np
-from sentence_transformers import SentenceTransformer
 
 # Define paths
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,6 +13,7 @@ def get_embedding_model():
     """Returns the sentence-transformers model, loading it once."""
     global _model
     if _model is None:
+        from sentence_transformers import SentenceTransformer
         _model = SentenceTransformer("all-MiniLM-L6-v2")
     return _model
 

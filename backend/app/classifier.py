@@ -1,11 +1,6 @@
 import os
 import pickle
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
-from sklearn.pipeline import Pipeline
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, precision_recall_fscore_support
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_PATH = os.path.join(BASE_DIR, "skill_classifier.pkl")
@@ -25,6 +20,12 @@ def train_and_save_classifier(data: list[dict]):
     Trains a Logistic Regression classifier on synthetic skill lists.
     Saves model as skill_classifier.pkl and evaluation metrics chart as static/classifier_metrics.png.
     """
+    from sklearn.model_selection import train_test_split
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.pipeline import Pipeline
+    from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, precision_recall_fscore_support
+
     import matplotlib
     # Use non-interactive backend for matplotlib to avoid GUI thread errors
     matplotlib.use('Agg')

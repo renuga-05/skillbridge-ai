@@ -1,5 +1,4 @@
 import numpy as np
-from sentence_transformers import SentenceTransformer
 from app.parser import parse_skills
 from app.rag import get_embedding_model
 

@@ -3,15 +3,20 @@ import os
 import json
 import pdfplumber
 import docx
-import spacy
 
-# Try to load spaCy model, otherwise download it or print error
-nlp = None
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    # We will try to download it dynamically inside main.py / seed.py
-    pass
+# Lazy-loaded spaCy model
+_nlp = None
+
+def get_spacy_model():
+    """Lazy loads spaCy model only when NER is needed."""
+    global _nlp
+    if _nlp is None:
+        try:
+            import spacy
+            _nlp = spacy.load("en_core_web_sm")
+        except Exception:
+            pass
+    return _nlp
 
 # Hardcoded skill lists for fast vocabulary checks (in addition to classifier)
 TECH_SKILLS_DICTIONARY = [
@@ -84,7 +89,7 @@ def extract_text(file_path: str) -> str:
 
 def parse_name(text: str) -> str:
     """Parses candidate name using spaCy PERSON NER or first line fallback."""
-    global nlp
+    nlp = get_spacy_model()
     if nlp is not None:
         doc = nlp(text[:800])  # Scan first 800 characters
         for ent in doc.ents:
