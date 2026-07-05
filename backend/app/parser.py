@@ -289,8 +289,8 @@ def parse_resume_to_json(file_path: str) -> dict:
 if __name__ == "__main__":
     # Test script if executed standalone
     test_text = """
-    Jane Doe
-    jane.doe@example.com | (123) 456-7890
+    Renuga
+    renuga@example.com | (123) 456-7890
     
     EDUCATION
     Master of Science in Computer Science, Stanford University, 2024
