@@ -356,20 +356,7 @@ def main():
     metrics = train_and_save_classifier(synthetic_data)
     print(f"Classifier trained. Accuracy: {metrics['accuracy']:.4f}")
     
-    # 4. Try to download spaCy model if missing
-    print("\nChecking spaCy model...")
-    try:
-        import spacy
-        try:
-            spacy.load("en_core_web_sm")
-            print("spaCy 'en_core_web_sm' model is already available.")
-        except OSError:
-            print("spaCy 'en_core_web_sm' model is missing. Downloading...")
-            import subprocess
-            subprocess.run([sys.executable, "-m", "spacy", "download", "en_core_web_sm"], check=True)
-            print("spaCy model downloaded successfully.")
-    except Exception as e:
-        print(f"Error checking/downloading spaCy: {e}")
+
         
     # 5. Index documents in ChromaDB (requires sentence-transformers)
     print("\nIndexing knowledge base files into ChromaDB...")
