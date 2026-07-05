@@ -1,10 +1,6 @@
 import os
 import pickle
 import numpy as np
-import matplotlib
-# Use non-interactive backend for matplotlib to avoid GUI thread errors
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -29,6 +25,11 @@ def train_and_save_classifier(data: list[dict]):
     Trains a Logistic Regression classifier on synthetic skill lists.
     Saves model as skill_classifier.pkl and evaluation metrics chart as static/classifier_metrics.png.
     """
+    import matplotlib
+    # Use non-interactive backend for matplotlib to avoid GUI thread errors
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+
     os.makedirs(os.path.dirname(CHART_PATH), exist_ok=True)
     
     # Extract features and targets
