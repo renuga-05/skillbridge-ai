@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Calendar, Award, Eye, FileText, Loader2, ArrowRight } from 'lucide-react';
+import { Calendar, Award, Eye, FileText, Loader2, ArrowRight, AlertCircle } from 'lucide-react';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
-export default function History({ onViewRoadmap }) {
+export default function History({ 
+  onViewRoadmap,
+  setGlobalLoading = () => {},
+  setLoadingMessage = () => {}
+}) {
   const [historyList, setHistoryList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -16,6 +20,8 @@ export default function History({ onViewRoadmap }) {
 
   const fetchHistory = async () => {
     setLoading(true);
+    setGlobalLoading(true);
+    setLoadingMessage("Loading assessment histories...");
     setError('');
     try {
       const response = await axios.get(`${API_BASE_URL}/history`);
@@ -26,6 +32,7 @@ export default function History({ onViewRoadmap }) {
       setError('Could not retrieve match history logs. Check backend server connection.');
     } finally {
       setLoading(false);
+      setGlobalLoading(false);
     }
   };
 

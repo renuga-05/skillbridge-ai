@@ -10,7 +10,9 @@ export default function Dashboard({
   setCandidate, 
   matchResult, 
   setMatchResult,
-  setViewRoadmapMatchId
+  setViewRoadmapMatchId,
+  setGlobalLoading = () => {},
+  setLoadingMessage = () => {}
 }) {
   const [file, setFile] = useState(null);
   const [jd, setJd] = useState('');
@@ -32,6 +34,8 @@ export default function Dashboard({
     }
     
     setLoading(true);
+    setGlobalLoading(true);
+    setLoadingMessage("Parsing resume content with NLP...");
     const formData = new FormData();
     formData.append("file", file);
 
@@ -47,6 +51,7 @@ export default function Dashboard({
       alert("Error parsing resume. Please ensure the backend is running and the file is valid.");
     } finally {
       setLoading(false);
+      setGlobalLoading(false);
     }
   };
 
@@ -61,6 +66,8 @@ export default function Dashboard({
     }
 
     setLoading(true);
+    setGlobalLoading(true);
+    setLoadingMessage("Running semantic matching & gap analysis...");
     try {
       const response = await axios.post(`${API_BASE_URL}/match`, {
         candidate_id: candidate.id,
@@ -73,6 +80,7 @@ export default function Dashboard({
       alert("Error matching candidate. Please check backend logs.");
     } finally {
       setLoading(false);
+      setGlobalLoading(false);
     }
   };
 

@@ -4,7 +4,12 @@ import { Calendar, CheckSquare, BookOpen, ChevronRight, BarChart2, Award, ArrowL
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
-export default function Roadmap({ matchId, onBack }) {
+export default function Roadmap({ 
+  matchId, 
+  onBack,
+  setGlobalLoading = () => {},
+  setLoadingMessage = () => {}
+}) {
   const [roadmapData, setRoadmapData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -20,6 +25,8 @@ export default function Roadmap({ matchId, onBack }) {
 
   const fetchRoadmap = async () => {
     setLoading(true);
+    setGlobalLoading(true);
+    setLoadingMessage("Generating custom 4-week upskilling roadmap...");
     setError('');
     try {
       const response = await axios.post(`${API_BASE_URL}/roadmap`, {
@@ -44,6 +51,7 @@ export default function Roadmap({ matchId, onBack }) {
       setError('Failed to generate upskilling roadmap. Please make sure the backend is running and the Groq API key is valid.');
     } finally {
       setLoading(false);
+      setGlobalLoading(false);
     }
   };
 
